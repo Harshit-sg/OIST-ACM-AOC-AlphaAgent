@@ -1,0 +1,195 @@
+# 🌲🔥 Forest Fire Alert Agent
+
+**An AI-powered safety assistant that monitors simulated forest heat sensors in real-time and provides clear, friendly safety advice using OpenAI GPT-4o-mini.**
+
+## 🎯 Overview
+This project simulates a real-world IoT monitoring system where an AI agent analyzes temperature data from five distinct forest zones. It classifies conditions into four alert levels and delivers actionable safety guidance through a clean, interactive Gradio interface. Perfect for educational demos, prototyping smart city solutions, or learning how to integrate LLMs with sensor data.
+
+## ✨ Key Features
+- **Real-time Simulation**: Generates dynamic heat readings for 5 forest zones based on selected scenarios (Normal, Warning, Fire).
+- **AI-Powered Analysis**: Uses **GPT-4o-mini** to interpret sensor data and answer user questions with context-aware safety advice.
+- **Visual Alert System**: Color-coded alert levels (🟢 Normal, 🟡 Warning, 🟠 Danger, 🔴 Critical) for instant status recognition.
+- **Secure Design**: API keys managed via `.env` files; no hardcoded secrets.
+- **Interactive UI**: Built with **Gradio** for an intuitive, zero-setup user experience.
+
+## 🗺️ Monitored Zones
+| Zone ID | Location |
+| :--- | :--- |
+| **ZONE-A** | North Ridge Forest |
+| **ZONE-B** | Valley Stream Area |
+| **ZONE-C** | East Slope Woodland |
+| **ZONE-D** | South Pine Cluster |
+| **ZONE-E** | Central Grove Station |
+
+## 🚨 Alert Level Logic
+| Level | Temp Range (°C) | Meaning |
+| :--- | :--- | :--- |
+| 🟢 **NORMAL** | < 45 | All clear — safe conditions |
+| 🟡 **WARNING** | 45 – 59 | Elevated heat — monitor closely |
+| 🟠 **DANGER** | 60 – 79 | High risk — prepare response |
+| 🔴 **CRITICAL** | ≥ 80 | **FIRE DETECTED** — act immediately! |
+
+## 🛠️ Tech Stack
+- **AI Model**: OpenAI GPT-4o-mini
+- **UI Framework**: Gradio
+- **API Client**: `openai` (Python SDK)
+- **Environment**: `python-dotenv`
+- **Data Source**: Simulated Python logic (easily swappable for real IoT)
+
+## 🚀 How It Works
+1. **User Input**: Selects a scenario (Normal/Elevated/Fire) and asks a question.
+2. **Sensor Simulation**: Python generates realistic temperature data for all 5 zones.
+3. **AI Processing**: GPT-4o-mini analyzes the data + user question against safety rules.
+4. **Response**: Returns formatted sensor status + friendly, actionable advice.
+
+## 🔒 Security Best Practices
+- ✅ API keys stored in `.env` (never hardcoded).
+- ✅ `.env` added to `.gitignore` to prevent accidental commits.
+- ✅ Data processed locally; no third-party data leaks.
+
+## 🌱 Future Enhancements
+- 📡 Connect to real IoT sensors via **MQTT** or **REST API**.
+- 📱 Send **SMS/Email alerts** using Twilio or SendGrid.
+- 🗺️ Visualize data on a live **Leaflet.js** forest map.
+- 💾 Store alert history in **SQLite** for trend analysis.
+- ☁️ Deploy to **Google Cloud Run** or **AWS Lambda** for production.
+
+  Installation--
+  
+Before you begin, make sure you have:
+- **Python 3.9+** installed
+- **pip** (Python package manager)
+- An **OpenAI API key** (get one at [platform.openai.com](https://platform.openai.com))
+- A code editor (VS Code, PyCharm, etc.)
+- **Git** (optional, for version control)
+
+### Step 1: Create a Project Directory
+
+```bash
+mkdir forest-fire-alert-agent
+cd forest-fire-alert-agent
+```
+
+### Step 2: Create a Virtual Environment
+
+This keeps your project dependencies isolated and clean.
+
+```bash
+# On macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+
+# On Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+You should see `(venv)` appear in your terminal prompt.
+
+### Step 3: Install Required Dependencies
+
+```bash
+pip install --upgrade pip
+pip install openai gradio python-dotenv
+```
+
+**What each package does:**
+- `openai`: Official OpenAI Python client for GPT-4o-mini
+- `gradio`: Creates the clean web UI
+- `python-dotenv`: Loads environment variables from `.env` file
+
+### Step 4: Create the `.env` File
+
+In your project root directory, create a file named `.env`:
+
+```text
+OPENAI_API_KEY=your_actual_api_key_here
+```
+
+Replace `your_actual_api_key_here` with your real OpenAI API key.
+
+### Step 5: Create `.gitignore` File
+
+Ensure your `.env` file is never committed to version control:
+
+```text
+# Environment variables
+.env
+.env.local
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+```
+
+### Step 6: Project Structure
+
+Organize your files like this:
+
+```
+forest-fire-alert-agent/
+├── venv/                    # Virtual environment (auto-created)
+├── .env                     # API keys (never commit!)
+├── .gitignore              # Git ignore rules
+├── requirements.txt        # Dependencies list
+├── main.py                 # Main application
+├── sensor_simulator.py     # Heat sensor simulation
+├── ai_agent.py            # GPT-4o-mini integration
+└── README.md              # Project documentation
+```
+
+### Step 7: Create `requirements.txt`
+
+This file makes it easy for others to install dependencies:
+
+```bash
+pip freeze > requirements.txt
+```
+
+Or manually create it with:
+
+```text
+openai==1.3.0
+gradio==4.0.0
+python-dotenv==1.0.0
+```
+
+### Step 8: Verify Installation
+
+Create a quick test file to confirm everything works:
+
+```bash
+python -c "import openai, gradio; print('✅ All dependencies installed!')"
+```
+
+### Next Steps
+
+Once installation is complete, you'll need to create:
+
+1. **`sensor_simulator.py`** – Generates fake heat data for the 5 forest zones
+2. **`ai_agent.py`** – Handles GPT-4o-mini calls with sensor context
+3. **`main.py`** – Builds the Gradio UI and ties everything together
+
+Would you like me to write the complete code for these files? I can provide:
+- Full, production-ready code with comments
+- Explanations of each component
+- Error handling and best practices
+
+Let me know and I'll get you started! 🚀
