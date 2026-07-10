@@ -1,0 +1,8 @@
+# 🌲 Forest Fire Alert Agent — Requirements
+# Core AI & API
+openai>=1.30.0          # OpenAI Python SDK for GPT-4o-mini
+python-dotenv>=1.0.0    # Load API key from .env file
+# UI
+gradio>=4.36.0          # Simple, beautiful interactive web UI
+# Utilities
+requests>=2.31.0        # HTTP requests (for future real sensor API)
